@@ -1,64 +1,77 @@
-import { useState } from "react";
-import api from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react"
+import api from "../services/api"
+import { useNavigate } from "react-router-dom"
 
 function Register({ setIsLoggedIn }) {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
- 
-  const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
+  const [message, setMessage] = useState("")
+  const navigate = useNavigate()
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
     try {
       const response = await api.post("/auth/register", {
         userName,
         password,
-      });
-
-      const { token } = response.data.data;
-      localStorage.setItem("token", token);
-      setIsLoggedIn(true);
-      setMessage("✅ Registro correcto");
-      navigate("/menu");
+      })
+      const { token } = response.data.data
+      localStorage.setItem("token", token)
+      setIsLoggedIn(true)
+      setMessage("✅ Registro correcto")
+      navigate("/menu")
     } catch (error) {
-      setMessage("❌ Error en el registro");
+      setMessage("❌ Error en el registro")
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-      <form onSubmit={handleRegister} className="bg-gray-800 p-8 rounded shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-4 text-center">Registro</h2>
-
-        <input
-          type="text"
-          placeholder="Nombre de usuario"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          className="w-full p-2 mb-4 rounded bg-gray-700 text-white"
+    <div className="h-full w-full flex flex-col items-center justify-center px-4">
+      {/* Logo más grande y adaptable */}
+      <div className="flex-shrink-0 mb-6 max-h-64">
+        <img
+          src="/logo-blackjack-transparent.png"
+          alt="BlackjackApp Logo"
+          className="w-80 max-w-sm sm:w-96 md:w-[28rem] lg:w-[32rem] h-auto max-h-full object-contain animate-fade-in"
         />
+      </div>
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 mb-4 rounded bg-gray-700 text-white"
-        />
+      {/* Formulario adaptado al nuevo layout */}
+      <div className="flex-shrink-0 w-full max-w-xs">
+        <form onSubmit={handleRegister} className="bg-gray-800 p-6 rounded-lg shadow-xl">
+          <h2 className="text-2xl font-bold mb-4 text-center">Registro</h2>
 
-        
+          <div className="space-y-3">
+            <input
+              type="text"
+              placeholder="Nombre de usuario"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              className="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              required
+            />
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg font-bold transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Registrarse
+            </button>
+          </div>
 
-        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded font-bold">
-          Registrarse
-        </button>
-
-        {message && <p className="mt-4 text-sm text-center">{message}</p>}
-      </form>
+          {message && <p className="mt-3 text-sm text-center font-medium">{message}</p>}
+        </form>
+      </div>
     </div>
-  );
+  )
 }
 
-export default Register;
+export default Register
+
