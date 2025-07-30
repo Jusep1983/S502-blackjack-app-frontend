@@ -6,3 +6,13 @@ body {
   @apply bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white;
   font-family: 'Segoe UI', sans-serif;
 }
+
+.table-felt {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+}
