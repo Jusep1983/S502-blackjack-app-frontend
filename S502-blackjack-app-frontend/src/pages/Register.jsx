@@ -24,7 +24,11 @@ function Register({ setIsLoggedIn }) {
       setMessage("✅ Registro correcto")
       navigate("/menu")
     } catch (error) {
-      setMessage("❌ Error en el registro")
+      if (error.response && error.response.data && error.response.data.message) {
+    setMessage(`❌ ${error.response.data.message}`)
+  } else {
+    setMessage("❌ Error en el registro")
+  }
     }
     setLoading(false)
   }
