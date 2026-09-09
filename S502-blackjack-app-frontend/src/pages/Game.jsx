@@ -109,7 +109,7 @@ export default function Game() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center py-6 px-4">
-      <div className="scale-[0.8] origin-top transform w-full max-w-6xl bg-green-900 table-felt p-8 rounded-xl shadow-lg space-y-8">
+      <div className="scale-100 md:scale-[0.8] origin-top transform w-full max-w-6xl bg-green-900 table-felt p-8 rounded-xl shadow-lg space-y-8">
         <div className="flex justify-center mb-4">
           <img
             src="/logo-blackjack-transparent.png"
@@ -137,7 +137,7 @@ export default function Game() {
                       key={i}
                       src={getCardImage(card) || "/placeholder.svg"}
                       alt={`${card.rank} of ${card.suit}`}
-                      className="w-28 rounded-md"
+                      className="w-20 sm:w-24 md:w-28 rounded-md"
                     />
                   ))}
                 </div>
@@ -156,7 +156,7 @@ export default function Game() {
                           : "/cards/BACK.png"
                       }
                       alt="Carta dealer"
-                      className="w-28 rounded-md"
+                      className="w-20 sm:w-24 md:w-28 rounded-md"
                     />
                   ))}
                 </div>
