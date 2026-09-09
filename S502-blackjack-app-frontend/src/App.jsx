@@ -21,10 +21,10 @@ function App() {
 
   return (
     // Aplicamos las clases de Tailwind directamente aquí
-    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white font-sans">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white font-sans">
       <BrowserRouter>
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-        <main className="flex-1 overflow-hidden">
+        <main className="flex-1">
           <Routes>
             <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
